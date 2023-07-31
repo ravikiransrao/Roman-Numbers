@@ -19,6 +19,7 @@ public class RomanIndian {
 	RomanIndian(String romanNumber ){
 		buildRomanDigitsList(romanNumber);
 		
+		
 	}
 	
 	RomanIndian(Integer indianNumber ){
@@ -81,6 +82,16 @@ public class RomanIndian {
 			}
 			
 		}
+		
+		
+	}
+	private void validateAndBuildIndian() throws IllegalArgumentException{
+		boolean initialize=true;
+		for(RomanDigit romanDigit : romanDigits) {
+			
+			
+		}
+		
 	}
 	
 	
