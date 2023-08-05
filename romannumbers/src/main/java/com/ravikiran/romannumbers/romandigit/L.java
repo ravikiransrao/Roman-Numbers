@@ -4,7 +4,7 @@ import com.ravikiran.romannumbers.Position;
 
 public class L extends RomanDigit {
 	public L() {
-		Position p = new Position(0, true);
+		Position p = new Position(2, true);
 		super.setLetter('L');
 		super.setValue(50);
 		super.setCanDecrementIncrement(false);

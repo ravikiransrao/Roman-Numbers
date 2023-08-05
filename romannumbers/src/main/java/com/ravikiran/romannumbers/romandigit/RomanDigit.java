@@ -1,6 +1,7 @@
 package com.ravikiran.romannumbers.romandigit;
 
 import com.ravikiran.romannumbers.Position;
+import com.ravikiran.romannumbers.RomanException;
 
 public class RomanDigit {
 	
@@ -35,5 +36,29 @@ public class RomanDigit {
 	protected void setPosition(Position position) {
 		this.position = position;
 	}
+	public Integer decrement(RomanDigit r) throws IllegalArgumentException{
+		if( r.canDecrementIncrement) {
+			if (r.getPosition().isFinal()) {
+				throw new RomanException();
+			}
+			else {
+				if (this.getPosition().getValue()-r.getPosition().getValue()==1) {
+					value=value-r.getValue();
+					position.setFinal(true);
+					position.setValue(position.getValue()-1);
+					return value;
+				}
+				else {
+					throw new RomanException();
+				}
+					
+			}
+		}
+		else {
+			
+			throw new RomanException();
+		}
+	}
+	
 
 }

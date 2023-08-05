@@ -18,8 +18,8 @@ public class RomanIndian {
 	
 	RomanIndian(String romanNumber ){
 		buildRomanDigitsList(romanNumber);
-		
-		
+		indianNumber= validateAndBuildIndian();
+		this.romanNumber= romanNumber;
 	}
 	
 	RomanIndian(Integer indianNumber ){
@@ -33,7 +33,7 @@ public class RomanIndian {
 		return romanNumber;
 	}
 
-	private Integer getIndianNumber() {
+	public Integer getIndianNumber() {
 		return indianNumber;
 	}
 	
@@ -74,25 +74,75 @@ public class RomanIndian {
 					romanDigits.add(r);
 					break;
 				default:
-					throw new IllegalArgumentException("A Roman Number can only contain characters I, V, X, L, C, D, M");
+					throw new RomanException("A Roman Number can only contain characters I, V, X, L, C, D, M");
 				
-				
-				
-			
 			}
-			
+			it.next();
 		}
 		
 		
 	}
-	private void validateAndBuildIndian() throws IllegalArgumentException{
-		boolean initialize=true;
-		for(RomanDigit romanDigit : romanDigits) {
-			
-			
+	private Integer validateAndBuildIndian() throws IllegalArgumentException{
+		//initialize position
+		Position p = new Position(romanDigits.get(0).getPosition());
+		int posDiff =0;
+		Integer prevIndianValue=0;
+		Integer indianValue= romanDigits.get(0).getValue();
+		try {
+			for(int i =1; i<romanDigits.size(); i++) {
+				
+				posDiff= romanDigits.get(i).getPosition().getValue()-romanDigits.get(i-1).getPosition().getValue();
+			//	System.out.println(posDiff);
+				if ((posDiff>1)||((posDiff ==1)&& (p.isFinal()||p.getPositionCounter()>1)))   {
+					throw new RomanException();
+				}
+				if (posDiff ==1) {
+					romanDigits.get(i).decrement(romanDigits.get(i-1));
+					indianValue = prevIndianValue + romanDigits.get(i).getValue() ;
+					prevIndianValue=indianValue;
+					p.setFinal(true);
+					p.setValue(romanDigits.get(i).getPosition().getValue());
+				}
+				if(posDiff==0) {
+					
+					if(romanDigits.get(i).getLetter()== romanDigits.get(i-1).getLetter()) {
+						if (romanDigits.get(i).getLetter()=='M') {
+							p.incrementPositionCounter(true);
+						}
+						else {
+							p.incrementPositionCounter(false);
+						}
+		
+							
+					}
+						
+					indianValue+=romanDigits.get(i).getValue();
+					prevIndianValue =indianValue;
+					p.setFinal(romanDigits.get(i).getPosition().isFinal());
+					p.setValue(romanDigits.get(i).getPosition().getValue());
+				}
+				
+				if(posDiff<0) {
+					if(!romanDigits.get(i).getPosition().isFinal()) {
+						prevIndianValue=indianValue;
+					}
+					indianValue+=romanDigits.get(i).getValue();
+					p.setFinal(romanDigits.get(i).getPosition().isFinal());
+					
+					p.setValue(romanDigits.get(i).getPosition().getValue());
+				}
+				
+				
+			}
+		}catch (RomanException e) {
+			throw new RomanException(e);
 		}
 		
+		return indianValue;
+		
 	}
+	
+	
 	
 	
 }
