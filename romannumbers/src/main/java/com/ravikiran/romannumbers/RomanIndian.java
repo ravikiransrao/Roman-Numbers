@@ -97,14 +97,16 @@ public class RomanIndian {
 					throw new RomanException();
 				}
 				if (posDiff ==1) {
+					System.out.println(romanDigits.get(i).getLetter());
 					romanDigits.get(i).decrement(romanDigits.get(i-1));
 					indianValue = prevIndianValue + romanDigits.get(i).getValue() ;
 					prevIndianValue=indianValue;
 					p.setFinal(true);
 					p.setValue(romanDigits.get(i).getPosition().getValue());
+					System.out.println(indianValue);
 				}
 				if(posDiff==0) {
-					
+					//System.out.println(romanDigits.get(i).getLetter());
 					if(romanDigits.get(i).getLetter()== romanDigits.get(i-1).getLetter()) {
 						if (romanDigits.get(i).getLetter()=='M') {
 							p.incrementPositionCounter(true);
@@ -117,6 +119,7 @@ public class RomanIndian {
 					}
 						
 					indianValue+=romanDigits.get(i).getValue();
+					System.out.println(indianValue);
 					prevIndianValue =indianValue;
 					p.setFinal(romanDigits.get(i).getPosition().isFinal());
 					p.setValue(romanDigits.get(i).getPosition().getValue());

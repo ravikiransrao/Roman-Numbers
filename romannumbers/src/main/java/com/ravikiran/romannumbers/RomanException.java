@@ -11,7 +11,7 @@ public class RomanException extends IllegalArgumentException {
 		// TODO Auto-generated constructor stub
 	}
 
-	protected RomanException(String s) {
+	public RomanException(String s) {
 		super(s);
 		// TODO Auto-generated constructor stub
 	}
