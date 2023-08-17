@@ -2,7 +2,6 @@ package com.ravikiran.romannumbers2;
 
 import java.io.*;
 
-import com.ravikiran.romannumbers.RomanException;
 import com.ravikiran.romannumbers2.RomanIndian;
 
 /**
