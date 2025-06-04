@@ -24,7 +24,7 @@ public class App
             	if(!romanNumber.equalsIgnoreCase("quit")) {
             		//RomanIndian r = new RomanIndian(romanNumber);
                 	RomanIndian r = new RomanIndian (romanNumber);
-            		if(r.getErrorMessage() == "") {
+                        if(r.getErrorMessage().equals("")) {
             			System.out.format("The number you entered is: %s%n", r.getIndianNumber());
             		}else {
             			System.out.format("There is an error: %s%n", r.getErrorMessage());

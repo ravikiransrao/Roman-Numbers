@@ -26,7 +26,7 @@ public class RomanIndian {
 		try {
 			buildRomanDigitsList(romanNumber);
 			validateAndBuildIndian();
-			if(this.errorMessage=="") {
+                        if(this.errorMessage.equals("")) {
 				this.romanNumber= romanNumber;
 			}
 			
